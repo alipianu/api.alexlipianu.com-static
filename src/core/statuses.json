@@ -1,0 +1,22 @@
+{
+  "BADREQUEST": {
+    "name": "Bad Request",
+    "status": 400
+  },
+  "FORBIDDEN": {
+    "name": "Forbidden",
+    "status": 403
+  },
+  "NOTFOUND": {
+    "name": "Not Found",
+    "status": 404
+  },
+  "FATAL": {
+    "name": "Internal Server Error",
+    "status": 500
+  },
+  "NOTIMPLEMENTED": {
+    "name": "Not Implemented",
+    "status": 501
+  }
+}
