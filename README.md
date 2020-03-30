@@ -1,2 +1,2 @@
-# static.alexlipianu.com
-Static asset and data microservice for alexlipianu.com
+# api.alexlipianu.com-static
+Static asset and data microservice of api.alexlipianu.com

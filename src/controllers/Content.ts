@@ -1,6 +1,6 @@
-import { IGetEndpoint, IPostEndpoint, __ERROR__ } from "../core/endpoint";
+import { IGetEndpoint, IPostEndpoint, __ERROR__ } from "@core/endpoint";
 // import config from '../../config.json';
-import Content, { IContentDocument } from "../models/Content";
+import Content, { IContentDocument } from "@models/Content";
 
 /**
  * Get content
@@ -16,6 +16,15 @@ export const getContent: IGetEndpoint = async function (body: Record<string, str
 };
 
 /**
+ * Get content
+ * @param body - req body
+ * @param params - the req params
+ */
+export const test: IGetEndpoint = async function (body: Record<string, string> = {}, params?: Record<string, string>) {
+  this.respond({"status": "Test successfull"});
+};
+
+/**
  * Set content
  * @param body - req body
  */
@@ -24,5 +33,5 @@ export const setContent: IPostEndpoint = async function (body: any = {}) {
 };
 
 export default {
-  getContent, setContent
+  getContent, setContent, test
 }

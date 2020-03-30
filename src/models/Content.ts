@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import { __ERROR__ } from '../core/endpoint';
+import { __ERROR__ } from '@core/endpoint';
 
 
 /**

@@ -6,13 +6,13 @@
       "strict": true,
       "lib": ["es6", "es2017"],
       "moduleResolution": "node",
-      "baseUrl": "./",
       "paths": {
-        "*": [
-          "node_modules/*",
-          "src/types/*"
-        ]
+        "@core/*": ["../../core/*"],
+        "@config/*": ["./src/config/*"],
+        "@models/*": ["./src/models/*"],
+        "@controllers/*": ["./src/controllers/*"]
       },
+      "baseUrl": "./",
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true
