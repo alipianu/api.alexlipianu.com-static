@@ -50,8 +50,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var config_json_1 = __importDefault(require("../../config.json"));
-var errors_json_1 = __importDefault(require("./errors.json"));
+var config_json_1 = __importDefault(require("@config/config.json"));
+var errors_json_1 = __importDefault(require("@config/errors.json"));
 var statuses_json_1 = __importDefault(require("./statuses.json"));
 /**
  * Responds with an error

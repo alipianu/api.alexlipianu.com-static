@@ -8,7 +8,7 @@ var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var cors_1 = __importDefault(require("cors"));
 var body_parser_1 = require("body-parser");
 var endpoint_1 = require("./endpoint");
-var config_json_1 = __importDefault(require("../../config.json"));
+var config_json_1 = __importDefault(require("@config/config.json"));
 var apiPath = config_json_1.default.service.path;
 /**
  * Server class
