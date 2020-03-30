@@ -68,6 +68,20 @@ exports.getContent = function (body, params) {
     });
 };
 /**
+ * Get content
+ * @param body - req body
+ * @param params - the req params
+ */
+exports.test = function (body, params) {
+    if (body === void 0) { body = {}; }
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            this.respond({ "status": "Test successfull" });
+            return [2 /*return*/];
+        });
+    });
+};
+/**
  * Set content
  * @param body - req body
  */
@@ -81,5 +95,5 @@ exports.setContent = function (body) {
     });
 };
 exports.default = {
-    getContent: exports.getContent, setContent: exports.setContent
+    getContent: exports.getContent, setContent: exports.setContent, test: exports.test
 };
