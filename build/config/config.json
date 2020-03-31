@@ -1,10 +1,7 @@
 {
     "service": {
         "id": "01",
-        "path": "/static"
-    },
-    "services": {
-        "api": "https://api.alexlipianu.com"
+        "name": "static"
     },
     "cookies": {
         "analytics": {
