@@ -14,7 +14,7 @@
         "service": {
             "port": 3002,
             "corsOptions": {
-                "origin": "https://alexlipianu.com",
+                "origin": "https://new-ui.alexlipianu.com",
                 "methods": "GET,POST,OPTIONS",
                 "credentials": true,
                 "allowedHeaders": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
