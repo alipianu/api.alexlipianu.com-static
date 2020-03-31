@@ -53,7 +53,7 @@ exports.getContent = function (body, params) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(params && params['clientVersion'], params && params['contentID']);
+                    console.log(params);
                     if (!params || !params['clientVersion'] || !params['contentID'])
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
                     clientVersion = params['clientVersion'];
