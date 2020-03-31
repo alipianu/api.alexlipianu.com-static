@@ -52,7 +52,6 @@ exports.getContent = function (params) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(params);
                     if (!params || !params['clientVersion'] || !params['contentID'])
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
                     clientVersion = params['clientVersion'];
@@ -60,7 +59,7 @@ exports.getContent = function (params) {
                     return [4 /*yield*/, Content_1.default.getContent(contentID, clientVersion)];
                 case 1:
                     content = _a.sent();
-                    console.log(content.data);
+                    console.log(content);
                     this.respond(content.data);
                     return [2 /*return*/];
             }
