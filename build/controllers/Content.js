@@ -76,6 +76,7 @@ exports.test = function (body, params) {
     if (body === void 0) { body = {}; }
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            console.log("ajksdhajsdhj");
             this.respond({ "status": "Test successfull" });
             return [2 /*return*/];
         });
