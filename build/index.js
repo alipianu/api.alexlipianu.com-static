@@ -15,14 +15,19 @@ var path_1 = require("path");
     '/images': path_1.join(__dirname, 'images')
 })
     .mountRoutes({
-    '/content': {
+    '/': {
         get: {
-            '/:contentID/version/:clientVersion': Content_1.default.getContent,
             '/test': Content_1.default.test
         },
-        post: {
-            '/:contentID': Content_1.default.setContent
-        }
     }
+    // '/content': {
+    //   get: {
+    //     '/:contentID/version/:clientVersion': Content.getContent,
+    //     '/test': Content.test
+    //   },
+    //   post: {
+    //     '/:contentID': Content.setContent
+    //   }
+    // }
 })
     .listen(config_json_1.default.core.service.port, endpoint_1.NOTFOUND, function () { return console.log("Listening on port " + config_json_1.default.core.service.port + ".."); });
