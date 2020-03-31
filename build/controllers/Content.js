@@ -59,7 +59,6 @@ exports.getContent = function (params) {
                     return [4 /*yield*/, Content_1.default.getContent(contentID, clientVersion)];
                 case 1:
                     content = _a.sent();
-                    console.log(content);
                     this.respond(content.data);
                     return [2 /*return*/];
             }
