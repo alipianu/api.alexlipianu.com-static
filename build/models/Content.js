@@ -78,6 +78,7 @@ exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
                     return [4 /*yield*/, this.findOne({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gt: version } })];
                 case 1:
                     content = _a.sent();
+                    console.log(content);
                     if (!content)
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
                     return [2 /*return*/, content];
