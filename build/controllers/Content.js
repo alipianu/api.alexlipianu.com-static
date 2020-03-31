@@ -46,8 +46,7 @@ var Content_1 = __importDefault(require("../models/Content"));
  * @param body - req body
  * @param params - the req params
  */
-exports.getContent = function (body, params) {
-    if (body === void 0) { body = {}; }
+exports.getContent = function (params) {
     return __awaiter(this, void 0, void 0, function () {
         var clientVersion, contentID, content;
         return __generator(this, function (_a) {
