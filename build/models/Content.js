@@ -71,7 +71,6 @@ exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(contentID, clientVersion);
                     if (!contentID.match(patterns_json_1.default.integer) || !clientVersion.match(patterns_json_1.default.integer))
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
                     id = parseInt(contentID);
@@ -79,7 +78,6 @@ exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
                     return [4 /*yield*/, this.findOne({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gt: version } })];
                 case 1:
                     content = _a.sent();
-                    console.log(content);
                     if (!content)
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
                     return [2 /*return*/, content];
