@@ -55,7 +55,7 @@ mongoose_1.default.connect(config_json_1.default.core.service.database.url + "/"
  * Content schema
  */
 exports.ContentSchema = new mongoose_1.Schema({
-    contentID: { type: Number, required: true, unique: true },
+    contentID: { type: Number, required: true },
     minClientVersion: { type: Number, required: true },
     maxClientVersion: { type: Number },
     data: { type: [{}], required: true }
