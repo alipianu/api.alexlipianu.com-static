@@ -14,7 +14,7 @@
         "service": {
             "port": 3002,
             "corsOptions": {
-                "origin": "*",
+                "origin": "https://alexlipianu.com",
                 "methods": "GET,POST,OPTIONS",
                 "credentials": true,
                 "allowedHeaders": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
