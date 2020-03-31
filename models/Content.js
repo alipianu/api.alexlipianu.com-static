@@ -35,65 +35,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var endpoint_1 = require("@core/endpoint");
-// import config from '../../config.json';
-var Content_1 = __importDefault(require("@models/Content"));
+var mongoose_1 = __importStar(require("mongoose"));
+var endpoint_1 = require("../../../../core/endpoint");
+/**
+ * Content schema
+ */
+exports.ContentSchema = new mongoose_1.Schema({
+    contentID: { type: String, required: true, unique: true },
+    minClientVersion: { type: String, required: true },
+    maxClientVersion: { type: String },
+    data: { type: [{}], required: true }
+});
 /**
  * Get content
- * @param body - req body
- * @param params - the req params
+ * @param {string} contentID the content id
+ * @param {string} clientVersion the client version
  */
-exports.getContent = function (body, params) {
-    if (body === void 0) { body = {}; }
+exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
     return __awaiter(this, void 0, void 0, function () {
-        var clientVersion, contentID, content;
+        var content;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    if (!params || !params['clientVersion'] || !params['contentID'])
-                        throw endpoint_1.__ERROR__("0100", "BADREQUEST");
-                    clientVersion = params['clientVersion'];
-                    contentID = params['contentID'];
-                    return [4 /*yield*/, Content_1.default.getContent(contentID, clientVersion)];
+                case 0: return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $lte: clientVersion }, maxClientVersion: { $gte: clientVersion } })];
                 case 1:
                     content = _a.sent();
-                    this.respond(content.data);
-                    return [2 /*return*/];
+                    if (!content)
+                        throw endpoint_1.__ERROR__("0100", "BADREQUEST");
+                    return [2 /*return*/, content];
             }
         });
     });
 };
-/**
- * Get content
- * @param body - req body
- * @param params - the req params
- */
-exports.test = function (body, params) {
-    if (body === void 0) { body = {}; }
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            this.respond({ "status": "Test successfull" });
-            return [2 /*return*/];
-        });
-    });
-};
-/**
- * Set content
- * @param body - req body
- */
-exports.setContent = function (body) {
-    if (body === void 0) { body = {}; }
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            this.respond({});
-            return [2 /*return*/];
-        });
-    });
-};
-exports.default = {
-    getContent: exports.getContent, setContent: exports.setContent, test: exports.test
-};
+var Content = mongoose_1.default.model('Content', exports.ContentSchema, 'content');
+exports.default = Content;
