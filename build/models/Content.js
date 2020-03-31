@@ -42,16 +42,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importStar(require("mongoose"));
 var endpoint_1 = require("../../../../core/endpoint");
+var patterns_json_1 = __importDefault(require("../config/patterns.json"));
+var config_json_1 = __importDefault(require("../config/config.json"));
+mongoose_1.default.connect(config_json_1.default.core.service.database.url + "/" + config_json_1.default.core.service.database.name, config_json_1.default.core.service.database.options || {});
 /**
  * Content schema
  */
 exports.ContentSchema = new mongoose_1.Schema({
-    contentID: { type: String, required: true, unique: true },
-    minClientVersion: { type: String, required: true },
-    maxClientVersion: { type: String },
+    contentID: { type: Number, required: true, unique: true },
+    minClientVersion: { type: Number, required: true },
+    maxClientVersion: { type: Number },
     data: { type: [{}], required: true }
 });
 /**
@@ -61,10 +67,15 @@ exports.ContentSchema = new mongoose_1.Schema({
  */
 exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
     return __awaiter(this, void 0, void 0, function () {
-        var content;
+        var id, version, content;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $lte: clientVersion }, maxClientVersion: { $gte: clientVersion } })];
+                case 0:
+                    if (!contentID.match(patterns_json_1.default.integer) || !clientVersion.match(patterns_json_1.default.integer))
+                        throw endpoint_1.__ERROR__("0100", "BADREQUEST");
+                    id = parseInt(contentID);
+                    version = parseInt(clientVersion);
+                    return [4 /*yield*/, this.find({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gte: version } })];
                 case 1:
                     content = _a.sent();
                     if (!content)

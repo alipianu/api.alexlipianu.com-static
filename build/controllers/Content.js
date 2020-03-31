@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var endpoint_1 = require("../../../../core/endpoint");
-// import config from '../../config.json';
 var Content_1 = __importDefault(require("../models/Content"));
 /**
  * Get content
@@ -68,21 +67,6 @@ exports.getContent = function (body, params) {
     });
 };
 /**
- * Get content
- * @param body - req body
- * @param params - the req params
- */
-exports.test = function (body, params) {
-    if (body === void 0) { body = {}; }
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            console.log("ajksdhajsdhj");
-            this.respond({ "status": "Test successfull" });
-            return [2 /*return*/];
-        });
-    });
-};
-/**
  * Set content
  * @param body - req body
  */
@@ -96,5 +80,5 @@ exports.setContent = function (body) {
     });
 };
 exports.default = {
-    getContent: exports.getContent, setContent: exports.setContent, test: exports.test
+    getContent: exports.getContent, setContent: exports.setContent
 };

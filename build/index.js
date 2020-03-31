@@ -17,8 +17,7 @@ var path_1 = require("path");
     .mountRoutes({
     '/content': {
         get: {
-            '/:contentID/version/:clientVersion': Content_1.default.getContent,
-            '/test': Content_1.default.test
+            '/:contentID/version/:clientVersion': Content_1.default.getContent
         },
         post: {
             '/:contentID': Content_1.default.setContent
