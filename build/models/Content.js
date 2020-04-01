@@ -58,7 +58,7 @@ exports.ContentSchema = new mongoose_1.Schema({
     contentID: { type: Number, required: true },
     minClientVersion: { type: Number, required: true },
     maxClientVersion: { type: Number },
-    data: { type: [{}], required: true }
+    data: { type: {}, required: true }
 });
 /**
  * Get content
