@@ -11,7 +11,7 @@
         },
         "database": {
             "url": "mongodb://localhost:27017",
-            "name": "api-alexlipianu-static"
+            "name": "api-alexlipianu-com-static"
         }
     }
 }
