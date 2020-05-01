@@ -75,7 +75,7 @@ exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
                     id = parseInt(contentID);
                     version = parseInt(clientVersion);
-                    return [4 /*yield*/, this.findOne({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gt: version } })];
+                    return [4 /*yield*/, this.findOne({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gte: version } })];
                 case 1:
                     content = _a.sent();
                     if (!content)
