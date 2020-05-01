@@ -10,7 +10,7 @@ var endpoint_1 = require("../../../core/endpoint");
 var Content_1 = __importDefault(require("./controllers/Content"));
 var path_1 = require("path");
 // start api
-(new server_1.Server(config_json_1.default.service.id, config_json_1.default.service.name, errors_json_1.default, config_json_1.default.core.service.corsOptions))
+(new server_1.Server(config_json_1.default.service.id, config_json_1.default.service.name, errors_json_1.default, config_json_1.default.service.cors))
     .mountStaticRoutes({
     '/images': path_1.join(__dirname, 'images')
 })
@@ -24,4 +24,4 @@ var path_1 = require("path");
         }
     }
 })
-    .listen(config_json_1.default.core.service.port, endpoint_1.NOTFOUND, function () { return console.log("Listening on port " + config_json_1.default.core.service.port + ".."); });
+    .listen(config_json_1.default.service.port, endpoint_1.NOTFOUND, function () { return console.log(config_json_1.default.service.name + "-" + config_json_1.default.service.id + " service running on port " + config_json_1.default.service.port + ".."); });

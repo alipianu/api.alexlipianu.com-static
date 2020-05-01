@@ -1,31 +1,17 @@
 {
     "service": {
         "id": "01",
-        "name": "static"
-    },
-    "cookies": {
-        "analytics": {
-            "name": "alipianu-analytics",
-            "maxAge": 100000,
-            "length": 20
-        }
-    },
-    "core": {
-        "service": {
-            "port": 3002,
-            "corsOptions": {
-                "origin": "*",
-                "methods": "GET,POST,OPTIONS",
-                "credentials": true,
-                "allowedHeaders": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
-            },
-            "database": {
-                "url": "mongodb://localhost:27017",
-                "name": "alexlipianu-com",
-                "options": {
-                    "useNewUrlParser": true
-                }
-            }
+        "name": "static",
+        "port": 3002,
+        "cors": {
+            "origin": "*",
+            "methods": "GET,POST",
+            "credentials": true,
+            "allowedHeaders": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+        },
+        "database": {
+            "url": "mongodb://localhost:27017",
+            "name": "api-alexlipianu-static"
         }
     }
 }

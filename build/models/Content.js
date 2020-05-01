@@ -50,7 +50,7 @@ var mongoose_1 = __importStar(require("mongoose"));
 var endpoint_1 = require("../../../../core/endpoint");
 var patterns_json_1 = __importDefault(require("../config/patterns.json"));
 var config_json_1 = __importDefault(require("../config/config.json"));
-mongoose_1.default.connect(config_json_1.default.core.service.database.url + "/" + config_json_1.default.core.service.database.name, config_json_1.default.core.service.database.options || {});
+mongoose_1.default.connect(config_json_1.default.service.database.url + "/" + config_json_1.default.service.database.name, { useNewUrlParser: true });
 /**
  * Content schema
  */
