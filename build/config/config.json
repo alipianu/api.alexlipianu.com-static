@@ -1,7 +1,7 @@
 {
     "service": {
         "id": "01",
-        "name": "static",
+        "name": "v1/static",
         "port": 3002,
         "cors": {
             "origin": "*",
