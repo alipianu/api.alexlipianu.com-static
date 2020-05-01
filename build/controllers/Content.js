@@ -65,19 +65,6 @@ exports.getContent = function (params) {
         });
     });
 };
-/**
- * Set content
- * @param body - req body
- */
-exports.setContent = function (body) {
-    if (body === void 0) { body = {}; }
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            this.respond({});
-            return [2 /*return*/];
-        });
-    });
-};
 exports.default = {
-    getContent: exports.getContent, setContent: exports.setContent
+    getContent: exports.getContent
 };
