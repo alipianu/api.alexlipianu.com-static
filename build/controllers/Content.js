@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var endpoint_1 = require("../../../../core/endpoint");
+var endpoint_1 = require("../../../../../core/endpoint");
 var Content_1 = __importDefault(require("../models/Content"));
 /**
  * Get content

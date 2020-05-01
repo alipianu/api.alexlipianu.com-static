@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var server_1 = require("../../../core/server");
+var server_1 = require("../../../../core/server");
 var config_json_1 = __importDefault(require("./config/config.json"));
 var errors_json_1 = __importDefault(require("./config/errors.json"));
 var Content_1 = __importDefault(require("./controllers/Content"));

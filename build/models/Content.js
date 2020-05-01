@@ -47,7 +47,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importStar(require("mongoose"));
-var endpoint_1 = require("../../../../core/endpoint");
+var endpoint_1 = require("../../../../../core/endpoint");
 var patterns_json_1 = __importDefault(require("../config/patterns.json"));
 var config_json_1 = __importDefault(require("../config/config.json"));
 mongoose_1.default.connect(config_json_1.default.service.database.url + "/" + config_json_1.default.service.database.name, { useNewUrlParser: true });
