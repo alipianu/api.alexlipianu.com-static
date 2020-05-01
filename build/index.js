@@ -8,11 +8,10 @@ var config_json_1 = __importDefault(require("./config/config.json"));
 var errors_json_1 = __importDefault(require("./config/errors.json"));
 var endpoint_1 = require("../../../core/endpoint");
 var Content_1 = __importDefault(require("./controllers/Content"));
-var path_1 = require("path");
 // start api
 (new server_1.Server(config_json_1.default.service.id, config_json_1.default.service.name, errors_json_1.default, config_json_1.default.service.cors))
     .mountStaticRoutes({
-    '/images': path_1.join(__dirname, 'images')
+    '/images': process.env.API_IMAGE_PATH
 })
     .mountRoutes({
     '/content': {
