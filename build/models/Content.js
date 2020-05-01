@@ -57,7 +57,7 @@ mongoose_1.default.connect(config_json_1.default.service.database.url + "/" + co
 exports.ContentSchema = new mongoose_1.Schema({
     contentID: { type: Number, required: true },
     minClientVersion: { type: Number, required: true },
-    maxClientVersion: { type: Number },
+    maxClientVersion: { type: Number, required: true },
     data: { type: {}, required: true }
 });
 /**
@@ -73,6 +73,7 @@ exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
                 case 0:
                     if (!contentID.match(patterns_json_1.default.integer) || !clientVersion.match(patterns_json_1.default.integer))
                         throw endpoint_1.__ERROR__("0100", "BADREQUEST");
+                    console.log('a');
                     id = parseInt(contentID);
                     version = parseInt(clientVersion);
                     return [4 /*yield*/, this.findOne({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gte: version } })];
