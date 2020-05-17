@@ -111,7 +111,7 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
             update = { $set: {} };
             update['$set']["data." + path] = items;
             console.log('update: ', JSON.stringify(update));
-            this.update({ contentID: contentID, minClientVersion: { $gte: minClientVersion }, maxClientVersion: { $lte: maxClientVersion } }, update, function (err) {
+            this.updateMany({ contentID: contentID, minClientVersion: { $gte: minClientVersion }, maxClientVersion: { $lte: maxClientVersion } }, update, function (err) {
                 if (err)
                     console.log(err);
             });
