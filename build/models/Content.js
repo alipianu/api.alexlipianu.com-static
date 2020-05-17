@@ -103,6 +103,11 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
             // check for valid path
             if (!path.match(patterns_json_1.default.path))
                 return [2 /*return*/];
+            // update target content
+            console.log('contentID: ', contentID);
+            console.log('minClientVersion: ', minClientVersion);
+            console.log('maxClientVersion: ', maxClientVersion);
+            console.log('items: ', items);
             update = { $set: {} };
             update['$set']["data." + path] = items;
             console.log('update: ', JSON.stringify(update));
