@@ -22,6 +22,6 @@ var Activity_1 = __importDefault(require("./workers/Activity"));
 })
     .mountWorkers({
     // 2 min, for testing purposes
-    120000: [Activity_1.default.getLatest]
+    60000: [Activity_1.default.getLatest]
 })
     .listen(config_json_1.default.service.port, function () { return console.log(config_json_1.default.service.name + "-" + config_json_1.default.service.id + " service running on port " + config_json_1.default.service.port + ".."); });

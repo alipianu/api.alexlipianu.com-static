@@ -86,7 +86,7 @@ exports.getLatest = new worker_1.default(path_1.join(__dirname, 'scripts/latest-
     // debugging
     .onError(function (result) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        console.log(">> onError(" + result + ")");
+        console.log(">> onError(" + result.stderr + ")");
         return [2 /*return*/];
     });
 }); });
