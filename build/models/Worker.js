@@ -59,7 +59,7 @@ mongoose_1.default.connect(config_json_1.default.service.database.url + "/" + co
  * Worker schema
  */
 exports.WorkerSchema = new mongoose_1.Schema({
-    modelName: { type: String, required: true, unique: true },
+    mdlName: { type: String, required: true, unique: true },
     targets: [{
             contentID: { type: Number, required: true },
             minClientVersion: { type: Number, required: true },
@@ -75,13 +75,13 @@ exports.WorkerSchema = new mongoose_1.Schema({
  * @param {string} contentID the content id
  * @param {string} clientVersion the client version
  */
-exports.WorkerSchema.statics.updateAndPush = function (modelName, data, updateFn) {
+exports.WorkerSchema.statics.updateAndPush = function (mdlName, data, updateFn) {
     return __awaiter(this, void 0, void 0, function () {
         var model, worker;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    model = models_1.default[modelName];
+                    model = models_1.default[mdlName];
                     if (!model)
                         return [2 /*return*/];
                     // perform updates
@@ -89,7 +89,7 @@ exports.WorkerSchema.statics.updateAndPush = function (modelName, data, updateFn
                 case 1:
                     // perform updates
                     _a.sent();
-                    return [4 /*yield*/, Worker.findOne({ modelName: modelName })];
+                    return [4 /*yield*/, Worker.findOne({ mdlName: mdlName })];
                 case 2:
                     worker = _a.sent();
                     if (!worker)
