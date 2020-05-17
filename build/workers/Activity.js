@@ -57,7 +57,7 @@ var path_1 = require("path");
 /**
  * Get latest activity
  */
-exports.getLatest = new worker_1.default(path_1.join(__dirname, 'workers/scripts/latest-activity.sh'))
+exports.getLatest = new worker_1.default(path_1.join(__dirname, 'scripts/latest-activity.sh'))
     // pass urls for which to get latest
     .preHook(function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
     return [2 /*return*/, Activity_1.default.getGitHubURLs()];
