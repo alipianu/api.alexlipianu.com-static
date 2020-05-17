@@ -67,6 +67,7 @@ exports.getLatest = new worker_1.default('workers/scripts/latest-activity.sh')
     return __awaiter(void 0, void 0, void 0, function () {
         var response, duplicate;
         return __generator(this, function (_b) {
+            console.log(stdout);
             response = JSON.parse(stdout);
             duplicate = {};
             // perform activity updates, push changes
