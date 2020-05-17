@@ -98,42 +98,15 @@ exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
  */
 exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersion, maxClientVersion, path, items) {
     return __awaiter(this, void 0, void 0, function () {
-        var content, pathSplit;
+        var update;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    // check for valid path
-                    if (!path.match(patterns_json_1.default.path))
-                        return [2 /*return*/];
-                    return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $gte: minClientVersion }, maxClientVersion: { $lte: maxClientVersion } }, ['data'])];
-                case 1:
-                    content = _a.sent();
-                    if (!content.length)
-                        return [2 /*return*/];
-                    pathSplit = path.split(RegExp(patterns_json_1.default.pathSep, 'g'));
-                    console.log('path: ', pathSplit);
-                    content.forEach(function (doc) {
-                        var obj = doc.data;
-                        var last = pathSplit.length - 1;
-                        // traverse down data prop
-                        for (var i = 0; i < last; ++i) {
-                            var prop = pathSplit[i];
-                            console.log("prop[" + i + "]: ", prop);
-                            if (!obj[prop]) {
-                                if (Array.isArray(obj))
-                                    return; // do not modify, unexpected behavior
-                                obj[prop] = {};
-                            }
-                            ;
-                            obj = obj[prop];
-                        }
-                        // update items & save
-                        obj[pathSplit[last]] = items;
-                        console.log('doc: ', doc);
-                        doc.save();
-                    });
-                    return [2 /*return*/];
-            }
+            // check for valid path
+            if (!path.match(patterns_json_1.default.path))
+                return [2 /*return*/];
+            update = { $set: {} };
+            update['$set']["data." + path] = items;
+            this.update({ contentID: contentID, minClientVersion: { $gte: minClientVersion }, maxClientVersion: { $lte: maxClientVersion } }, update);
+            return [2 /*return*/];
         });
     });
 };
