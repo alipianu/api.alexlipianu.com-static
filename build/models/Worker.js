@@ -84,7 +84,6 @@ exports.WorkerSchema.statics.updateAndPush = function (mdlName, data, updateFn) 
                     model = models_1.default[mdlName];
                     if (!model)
                         return [2 /*return*/];
-                    console.log('mdoel: ', model);
                     // perform updates
                     return [4 /*yield*/, Promise.all(data.map(updateFn))];
                 case 1:
@@ -95,14 +94,12 @@ exports.WorkerSchema.statics.updateAndPush = function (mdlName, data, updateFn) 
                     worker = _a.sent();
                     if (!worker)
                         return [2 /*return*/];
-                    console.log('worker: ', worker);
                     // perform data push to content
                     worker.targets.forEach(function (target) {
                         var filter = target.filter, projection = target.projection, options = target.options;
                         // @ts-ignore
                         model.find(filter, projection, options)
                             .then(function (items) {
-                            console.log('items:', items);
                             var contentID = target.contentID, minClientVersion = target.minClientVersion, maxClientVersion = target.maxClientVersion, path = target.path;
                             Content_1.default.updateTarget(contentID, minClientVersion, maxClientVersion, path, items);
                         });

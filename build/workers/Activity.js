@@ -68,7 +68,6 @@ exports.getLatest = new worker_1.default(path_1.join(__dirname, 'scripts/latest-
     return __awaiter(void 0, void 0, void 0, function () {
         var response, duplicate;
         return __generator(this, function (_b) {
-            console.log(">> onSuccess(" + stdout + ")");
             response = JSON.parse(stdout);
             duplicate = {};
             // perform activity updates, push changes
@@ -82,14 +81,7 @@ exports.getLatest = new worker_1.default(path_1.join(__dirname, 'scripts/latest-
             return [2 /*return*/];
         });
     });
-}) //;
-    // debugging
-    .onError(function (result) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        console.log(">> onError(" + result.stderr + ")");
-        return [2 /*return*/];
-    });
-}); });
+});
 exports.default = {
     getLatest: exports.getLatest
 };
