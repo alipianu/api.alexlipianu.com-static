@@ -105,14 +105,13 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
                     // check for valid path
                     if (!path.match(patterns_json_1.default.path))
                         return [2 /*return*/];
-                    console.log('match');
                     return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $gte: minClientVersion }, maxClientVersion: { $lte: maxClientVersion } }, ['data'])];
                 case 1:
                     content = _a.sent();
-                    console.log('content: ', content);
                     if (!content.length)
                         return [2 /*return*/];
                     pathSplit = path.split(patterns_json_1.default.pathSep);
+                    console.log('path: ', pathSplit);
                     content.forEach(function (doc) {
                         var obj = doc.data;
                         var last = pathSplit.length - 1;
