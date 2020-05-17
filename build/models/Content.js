@@ -105,7 +105,7 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
                     // check for valid path
                     if (!path.match(patterns_json_1.default.path))
                         return [2 /*return*/];
-                    return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $lte: minClientVersion }, maxClientVersion: { $gte: maxClientVersion } }, ['data'])];
+                    return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $gte: minClientVersion }, maxClientVersion: { $lte: maxClientVersion } }, ['data'])];
                 case 1:
                     content = _a.sent();
                     if (!content.length)
