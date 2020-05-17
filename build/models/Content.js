@@ -110,7 +110,7 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
                     content = _a.sent();
                     if (!content.length)
                         return [2 /*return*/];
-                    pathSplit = path.split(patterns_json_1.default.pathSep);
+                    pathSplit = path.split(RegExp(patterns_json_1.default.pathSep, 'g'));
                     console.log('path: ', pathSplit);
                     content.forEach(function (doc) {
                         var obj = doc.data;
