@@ -8,7 +8,11 @@
     "description": "API endpoint does not exist or does not support that request method."
   },
   "0100": {
+    "name": "Invalid Content Request",
+    "description": "Request is missing content ID and/or client version."
+  },
+  "0101": {
     "name": "Missing Content",
-    "description": "Content request failed."
+    "description": "No content matches the specified content ID and client version."
   }
 }
