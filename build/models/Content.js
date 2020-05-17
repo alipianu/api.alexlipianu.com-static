@@ -129,7 +129,7 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
                         }
                         // update items & save
                         obj[pathSplit[last]] = items;
-                        console.log('obj[pathSplit[last]]: ', obj[pathSplit[last]]);
+                        console.log('doc: ', doc);
                         doc.save();
                     });
                     return [2 /*return*/];
