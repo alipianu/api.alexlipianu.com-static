@@ -67,7 +67,7 @@ exports.getLatest = new worker_1.default('workers/scripts/latest-activity.sh')
     return __awaiter(void 0, void 0, void 0, function () {
         var response, duplicate;
         return __generator(this, function (_b) {
-            console.log(stdout);
+            console.log(">> onSuccess(" + stdout + ")");
             response = JSON.parse(stdout);
             duplicate = {};
             // perform activity updates, push changes
@@ -81,7 +81,14 @@ exports.getLatest = new worker_1.default('workers/scripts/latest-activity.sh')
             return [2 /*return*/];
         });
     });
-});
+}) //;
+    // debugging
+    .onError(function (result) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        console.log(result);
+        return [2 /*return*/];
+    });
+}); });
 exports.default = {
     getLatest: exports.getLatest
 };
