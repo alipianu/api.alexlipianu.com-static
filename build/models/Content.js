@@ -117,6 +117,7 @@ exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersi
                         // traverse down data prop
                         for (var i = 0; i < last; ++i) {
                             var prop = pathSplit[i];
+                            console.log("prop[" + i + "]: ", prop);
                             if (!obj[prop]) {
                                 if (Array.isArray(obj))
                                     return; // do not modify, unexpected behavior
