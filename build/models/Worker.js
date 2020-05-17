@@ -47,92 +47,67 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importStar(require("mongoose"));
-var endpoint_1 = require("../../../../../core/endpoint");
-var patterns_json_1 = __importDefault(require("../config/patterns.json"));
 var config_json_1 = __importDefault(require("../config/config.json"));
+var Content_1 = __importDefault(require("./Content"));
+var models_1 = __importDefault(require("./models"));
 mongoose_1.default.connect(config_json_1.default.service.database.url + "/" + config_json_1.default.service.database.name, { useNewUrlParser: true });
 ;
 ;
 ;
+;
 /**
- * Content schema
+ * Worker schema
  */
-exports.ContentSchema = new mongoose_1.Schema({
-    contentID: { type: Number, required: true },
-    minClientVersion: { type: Number, required: true },
-    maxClientVersion: { type: Number, required: true },
-    data: { type: {}, required: true }
+exports.WorkerSchema = new mongoose_1.Schema({
+    modelName: { type: String, required: true, unique: true },
+    targets: [{
+            contentID: { type: Number, required: true },
+            minClientVersion: { type: Number, required: true },
+            maxClientVersion: { type: Number, required: true },
+            path: { type: String, required: true },
+            filter: { type: {} },
+            projection: { type: {} },
+            options: { type: {} }
+        }]
 });
 /**
  * Get content
  * @param {string} contentID the content id
  * @param {string} clientVersion the client version
  */
-exports.ContentSchema.statics.getContent = function (contentID, clientVersion) {
+exports.WorkerSchema.statics.updateAndPush = function (modelName, data, updateFn) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, version, content;
+        var model, worker;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!contentID.match(patterns_json_1.default.integer) || !clientVersion.match(patterns_json_1.default.integer))
-                        throw endpoint_1.__ERROR__("0100", "BADREQUEST");
-                    id = parseInt(contentID);
-                    version = parseInt(clientVersion);
-                    return [4 /*yield*/, this.findOne({ contentID: id, minClientVersion: { $lte: version }, maxClientVersion: { $gte: version } }, ['data'], { sort: { '_id': -1 } })];
-                case 1:
-                    content = _a.sent();
-                    if (!content)
-                        throw endpoint_1.__ERROR__("0100", "BADREQUEST");
-                    return [2 /*return*/, content];
-            }
-        });
-    });
-};
-/**
- * Updates a specific content target by updating items at a specific path
- * @param {number} contentID the content target's id
- * @param {string} minClientVersion the content target's minimum client version
- * @param {string} maxClientVersion the content target's maximum client version
- * @param {string} path the path inside the content target's data property to perform the update
- * @param {string} items the new items
- */
-exports.ContentSchema.statics.updateTarget = function (contentID, minClientVersion, maxClientVersion, path, items) {
-    return __awaiter(this, void 0, void 0, function () {
-        var content, pathSplit;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    // check for valid path
-                    if (!path.match(patterns_json_1.default.path))
+                    model = models_1.default[modelName];
+                    if (!model)
                         return [2 /*return*/];
-                    return [4 /*yield*/, this.find({ contentID: contentID, minClientVersion: { $lte: minClientVersion }, maxClientVersion: { $gte: maxClientVersion } }, ['data'])];
+                    // perform updates
+                    return [4 /*yield*/, Promise.all(data.map(updateFn))];
                 case 1:
-                    content = _a.sent();
-                    if (!content.length)
+                    // perform updates
+                    _a.sent();
+                    return [4 /*yield*/, Worker.findOne({ modelName: modelName })];
+                case 2:
+                    worker = _a.sent();
+                    if (!worker)
                         return [2 /*return*/];
-                    pathSplit = path.split(patterns_json_1.default.pathSep);
-                    content.forEach(function (doc) {
-                        var obj = doc.data;
-                        var last = pathSplit.length - 1;
-                        // traverse down data prop
-                        for (var i = 0; i < last; ++i) {
-                            var prop = pathSplit[i];
-                            if (!obj[prop]) {
-                                if (Array.isArray(obj))
-                                    return; // do not modify, unexpected behavior
-                                obj[prop] = {};
-                            }
-                            ;
-                            obj = obj[prop];
-                        }
-                        // update items & save
-                        obj[pathSplit[last]] = items;
-                        doc.save();
+                    // perform data push to content
+                    worker.targets.forEach(function (target) {
+                        var filter = target.filter, projection = target.projection, options = target.options;
+                        // @ts-ignore
+                        model.find(filter, projection, options)
+                            .then(function (items) {
+                            var contentID = target.contentID, minClientVersion = target.minClientVersion, maxClientVersion = target.maxClientVersion, path = target.path;
+                            Content_1.default.updateTarget(contentID, minClientVersion, maxClientVersion, path, items);
+                        });
                     });
                     return [2 /*return*/];
             }
         });
     });
 };
-var Content = mongoose_1.default.model('Content', exports.ContentSchema, 'content');
-exports.default = Content;
+var Worker = mongoose_1.default.model('Worker', exports.WorkerSchema, 'worker');
+exports.default = Worker;
