@@ -24,6 +24,6 @@ var Activity_1 = __importDefault(require("./workers/Activity"));
     30: [Activity_1.default.getLatest] // 30 min
 })
     .scheduleBackups({
-    1440: [config_json_1.default.service.database] // 24 hrs
+    2: [config_json_1.default.service.database] // 2 min (testing) [non-testing => 1440]
 })
     .listen(config_json_1.default.service.port, function () { return console.log(config_json_1.default.service.name + "-" + config_json_1.default.service.id + " service running on port " + config_json_1.default.service.port + ".."); });
