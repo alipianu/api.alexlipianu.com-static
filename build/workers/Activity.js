@@ -62,7 +62,7 @@ exports.getLatest = new worker_1.default(path_1.join(__dirname, 'scripts/latest-
     .preHook(function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
     return [2 /*return*/, Activity_1.default.getGitHubURLs()];
 }); }); })
-    // update activity with latest
+    // update activity with latest, push changes
     .onSuccess(function (_a) {
     var stdout = _a.stdout;
     return __awaiter(void 0, void 0, void 0, function () {
@@ -70,7 +70,6 @@ exports.getLatest = new worker_1.default(path_1.join(__dirname, 'scripts/latest-
         return __generator(this, function (_b) {
             response = JSON.parse(stdout);
             duplicate = {};
-            // perform activity updates, push changes
             Worker_1.default.updateAndPush('Activity', response.data, function (activity) {
                 var url = activity.url, changeset = __rest(activity, ["url"]);
                 if (duplicate[url])

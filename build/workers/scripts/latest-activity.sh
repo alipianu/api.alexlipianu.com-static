@@ -21,7 +21,7 @@ for url in "${@:2}"; do
   # make repo events request
   project=${url##$githubUrlBase}
   reqUrl="https://api.github.com/repos/$project/events"
-  response=$(curl -f -s -u alipianu:$DEV_TOKEN $reqUrl)
+  response=$(curl -f -s -u $DEV_USERNAME:$DEV_TOKEN $reqUrl)
   status=$?
   if [ $status -eq 0 ]; then
 
@@ -41,7 +41,7 @@ for url in "${@:2}"; do
 
       # make repo details request
       reqUrl=${reqUrl%/events}
-      response=$(curl -s -u alipianu:$DEV_TOKEN $reqUrl)
+      response=$(curl -s -u $DEV_USERNAME:$DEV_TOKEN $reqUrl)
       status=$?
       if [ $status -eq 0 ]; then
 
