@@ -1,6 +1,6 @@
 {
     "service": {
-        "id": "01",
+        "id": 1,
         "name": "v1/static",
         "port": 3002,
         "cors": {

@@ -21,9 +21,9 @@ var Activity_1 = __importDefault(require("./workers/Activity"));
     }
 })
     .scheduleWorkers({
-    30: [Activity_1.default.getLatest] // 30 min
+    1440: [Activity_1.default.getLatest] // 24 hrs
 })
     .scheduleBackups({
-    2: [config_json_1.default.service.database] // 2 min (testing) [non-testing => 1440]
+    1440: [config_json_1.default.service.database] // 24 hrs
 })
-    .listen(config_json_1.default.service.port, function () { return console.log(config_json_1.default.service.name + "-" + config_json_1.default.service.id + " service running on port " + config_json_1.default.service.port + ".."); });
+    .listen(config_json_1.default.service.port);
