@@ -21,7 +21,7 @@ var Activity_1 = __importDefault(require("./workers/Activity"));
     }
 })
     .scheduleWorkers({
-    2: [Activity_1.default.getLatest] // 24 hrs
+    60: [Activity_1.default.getLatest] // 1 hr
 })
     .scheduleBackups({
     1440: [config_json_1.default.service.database] // 24 hrs
