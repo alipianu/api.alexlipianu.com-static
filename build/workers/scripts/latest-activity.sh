@@ -10,7 +10,7 @@ failed=""
 eventPattern="(\{[^}]+\"actor\"[^}]+\"login\"[[:space:]]*:[[:space:]]*\"alipianu\".*?\"public\"[[:space:]]*:[^,]+,[[:space:]]*\"created_at\"[^}]+\})"
 createdatDataPattern="[^\\]\"created_at\"[[:space:]]*:[[:space:]]*(\"[^\"]+\")[^}]+\}[[:space:]]*$"
 privateJSONPattern="[^\\](\"private\"[[:space:]]*:[[:space:]]*[^,]+),"
-descriptionJSONPattern="[^\\](\"description\"[[:space:]]*:[[:space:]]*[^,]+),"
+descriptionJSONPattern="[^\\](\"description\"[[:space:]]*:[[:space:]]*\"([^\"\\]|\\.)*\"),"
 nameJSONPattern="[^\\](\"name\"[[:space:]]*:[[:space:]]*[^,]+),"
 repoDataPattern="$nameJSONPattern.*$privateJSONPattern.*$descriptionJSONPattern"
 
