@@ -9,12 +9,10 @@ import { join } from 'path';
 export const getLatest = new Worker(join(__dirname, 'scripts/latest-activity.sh'))
   // pass urls for which to get latest
   .preHook(async () => Activity.getGitHubURLs())
-  // update activity with latest
+  // update activity with latest, push changes
   .onSuccess(async ({stdout}: any) => {
     const response: any = JSON.parse(stdout);
     const duplicate: any = {};
-
-    // perform activity updates, push changes
     WorkerModel.updateAndPush('Activity', response.data, (activity) => {
       const { url, ...changeset } = activity;
       if (duplicate[url]) return Promise.resolve();

@@ -10,7 +10,7 @@ failed=""
 eventPattern="(\{[^}]+\"actor\"[^}]+\"login\"[[:space:]]*:[[:space:]]*\"alipianu\".*?\"public\"[[:space:]]*:[^,]+,[[:space:]]*\"created_at\"[^}]+\})"
 createdatDataPattern="[^\\]\"created_at\"[[:space:]]*:[[:space:]]*(\"[^\"]+\")[^}]+\}[[:space:]]*$"
 privateJSONPattern="[^\\](\"private\"[[:space:]]*:[[:space:]]*[^,]+),"
-descriptionJSONPattern="[^\\](\"description\"[[:space:]]*:[[:space:]]*[^,]+),"
+descriptionJSONPattern="[^\\](\"description\"[[:space:]]*:[[:space:]]*\"([^\"\\]|\\.)*\"),"
 nameJSONPattern="[^\\](\"name\"[[:space:]]*:[[:space:]]*[^,]+),"
 repoDataPattern="$nameJSONPattern.*$privateJSONPattern.*$descriptionJSONPattern"
 
@@ -21,7 +21,7 @@ for url in "${@:2}"; do
   # make repo events request
   project=${url##$githubUrlBase}
   reqUrl="https://api.github.com/repos/$project/events"
-  response=$(curl -f -s -u alipianu:$DEV_TOKEN $reqUrl)
+  response=$(curl -f -s -u $DEV_USERNAME:$DEV_TOKEN $reqUrl)
   status=$?
   if [ $status -eq 0 ]; then
 
@@ -41,7 +41,7 @@ for url in "${@:2}"; do
 
       # make repo details request
       reqUrl=${reqUrl%/events}
-      response=$(curl -s -u alipianu:$DEV_TOKEN $reqUrl)
+      response=$(curl -s -u $DEV_USERNAME:$DEV_TOKEN $reqUrl)
       status=$?
       if [ $status -eq 0 ]; then
 

@@ -16,7 +16,10 @@ import ActivityWorker from './workers/Activity';
       }
     }
   })
-  .mountWorkers({
-    30: [ActivityWorker.getLatest] // 30 min
+  .scheduleWorkers({
+    60: [ActivityWorker.getLatest] // 1 hr
   })
-  .listen(config.service.port, () => console.log(`${config.service.name}-${config.service.id} service running on port ${config.service.port}..`));
+  .scheduleBackups({
+    1440: [config.service.database] // 24 hrs
+  })
+  .listen(config.service.port);
