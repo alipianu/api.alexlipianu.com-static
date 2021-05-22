@@ -1,13 +1,14 @@
-import { Server } from '../../../../core/server';
+import { Server } from '@alipianu/microservice-core';
 import config from './config/config.json';
 import errors from './config/errors.json';
 import ContentController from './controllers/Content';
 import ActivityWorker from './workers/Activity';
+import { __API_IMAGE_PATH__, __API_ID__, __API_PORT__ } from './constants';
 
 // start api
-(new Server(config.service.id, config.service.name, errors, config.service.cors))
+(new Server(__API_ID__, config.service.name, errors, config.service.cors))
   .mountStaticRoutes({
-    '/images': process.env.API_IMAGE_PATH
+    '/images': __API_IMAGE_PATH__
   })
   .mountRoutes({
     '/content': {
@@ -17,9 +18,9 @@ import ActivityWorker from './workers/Activity';
     }
   })
   .scheduleWorkers({
-    60: [ActivityWorker.getLatest] // 1 hr
+    720: [ActivityWorker.getLatest] // 12 hr = 60 min * 12
   })
   .scheduleBackups({
-    1440: [config.service.database] // 24 hrs
+    10080: [config.service.database] // 1 week = 60 min * 24 * 7
   })
-  .listen(config.service.port);
+  .listen(__API_PORT__);

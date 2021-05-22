@@ -2,7 +2,7 @@
   "service": {
     "id": 1,
     "name": "v1/static",
-    "port": 3002,
+    "port": 3100,
     "cors": {
       "origin": "*",
       "methods": "GET,POST",

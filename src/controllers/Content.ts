@@ -1,4 +1,4 @@
-import { IGetEndpoint, __ERROR__ } from "../../../../../core/endpoint";
+import { IGetEndpoint, __ERROR__ } from "@alipianu/microservice-core";
 import Content, { IContentDocument } from "../models/Content";
 
 /**

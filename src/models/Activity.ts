@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import { __ERROR__ } from '../../../../../core/endpoint';
+import { __ERROR__ } from '@alipianu/microservice-core';
 import patterns from '../config/patterns.json';
 import config from '../config/config.json';
 mongoose.connect(`${config.service.database.url}/${config.service.database.name}`, { useNewUrlParser: true });

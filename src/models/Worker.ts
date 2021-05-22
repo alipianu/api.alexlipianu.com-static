@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import { __ERROR__ } from '../../../../../core/endpoint';
+import { __ERROR__ } from '@alipianu/microservice-core';
 import config from '../config/config.json';
 import Content, { IContentTarget } from './Content';
 import models from './models';
@@ -46,7 +46,7 @@ export interface IWorkerModel extends Model<IWorkerDocument> {
  * Worker schema
  */
 export const WorkerSchema = new Schema({
-  mdlName: {type: String, required: true, unique: true},
+  mdlName: { type: String, required: true, unique: true },
   targets: [{
     contentID: { type: Number, required: true },
     minClientVersion: { type: Number, required: true },
@@ -78,13 +78,13 @@ WorkerSchema.statics.updateAndPush = async function (mdlName: string, data: Arra
 
   // perform data push to content
   worker.targets.forEach((target) => {
-    const {filter, projection, options} = target;
+    const { filter, projection, options } = target;
     // @ts-ignore
     model.find(filter, projection, options)
-         .then((items: any) => {
-            const {contentID, minClientVersion, maxClientVersion, path} = target;
-            Content.updateTarget(contentID, minClientVersion, maxClientVersion, path, items);
-          });
+      .then((items: any) => {
+        const { contentID, minClientVersion, maxClientVersion, path } = target;
+        Content.updateTarget(contentID, minClientVersion, maxClientVersion, path, items);
+      });
   });
 };
 
