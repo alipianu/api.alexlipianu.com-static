@@ -4,7 +4,8 @@
   "description": "Static asset and data microservice of api.alexlipianu.com.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -b --force && cp -r src/workers/scripts dist/workers/scripts",
+    "predeploy": "npm i && npm run build",
+    "build": "tsc -b && cp -r src/workers/scripts dist/workers/scripts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
