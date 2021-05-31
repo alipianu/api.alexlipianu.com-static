@@ -1,0 +1,29 @@
+name: Autodeploy 🚀
+
+on:
+  push:
+      branches: [ 'versions/[0-9]+.[0-9]+.[0-9]+' ]
+
+jobs:
+  autodeploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../alexlipianu.com.pem
+          sudo chmod 600 ../alexlipianu.com.pem
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+      - name: Deploy
+        run: ssh -i "$SSH_KEY_PATH" "$SSH_USER@$SSH_HOST" "cd /home/deployments/alexlipianu.com && ./scripts/setup.sh --deploy --v$(echo ${GITHUB_REF##*/} | cut -d. -f1) api:static"
+        shell: bash
+        env:
+          SSH_KEY_PATH: ${{github.workspace}}/../alexlipianu.com.pem
+          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_HOST: ${{secrets.SSH_HOST}}
